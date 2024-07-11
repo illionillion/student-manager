@@ -14,6 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 // NULLチェック
+if (!isset($_POST["full-name"]) || empty($_POST["full-name"])) {
+    header("Location: /student-list?error=1&type=edit");
+    die("Error: full-name is null or empty");
+}
 if (!isset($_POST["class-no"]) || empty($_POST["class-no"])) {
     header("Location: /add-student?error=1");
     die("Error: class-no is null or empty");

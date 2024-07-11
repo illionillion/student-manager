@@ -54,7 +54,7 @@ try {
         <div>
             <?php if (!empty($_GET['type']) && $_GET['type'] == "delete"): ?>
                 <?php if(!empty($_GET['error'])): ?>
-                    <p class="error">
+                    <p class="text-danger">
                         <?php if($_GET['error'] == 1): ?>
                             学籍番号が空です。
                         <?php elseif($_GET['error'] == 2): ?>
@@ -64,10 +64,28 @@ try {
                         <?php endif; ?>
                     </p>
                 <?php elseif(isset($_GET['success'])): ?>
-                    <p class="success">削除に成功しました。</p>
+                    <p class="text-success">削除に成功しました。</p>
                 <?php endif; ?>
             <?php elseif (!empty($_GET['type']) && $_GET['type'] == "edit"): ?>
-
+                <?php if(!empty($_GET['error'])): ?>
+                    <p class="text-danger">
+                        <?php if($_GET['error'] == 1): ?>
+                            学籍番号が空です。
+                        <?php elseif($_GET['error'] == 2): ?>
+                            メールが空です。
+                        <?php elseif($_GET['error'] == 0): ?>
+                            氏名が空です。
+                        <?php elseif($_GET['error'] == 3): ?>
+                            パスワードが空です。
+                        <?php elseif($_GET['error'] == 4): ?>
+                            出身高校が空です。
+                        <?php else: ?>
+                            サーバーエラー
+                        <?php endif; ?>
+                    </p>
+                <?php elseif(isset($_GET['success'])): ?>
+                    <p class="text-success">削除に成功しました。</p>
+                <?php endif; ?>
             <?php endif; ?>
             <table class="table">
                 <thead>
