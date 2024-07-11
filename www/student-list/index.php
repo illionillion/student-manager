@@ -52,6 +52,23 @@ try {
             <a href="/" class="link-secondary">トップへ</a>
         </div>
         <div>
+            <?php if (!empty($_GET['type']) && $_GET['type'] == "delete"): ?>
+                <?php if(!empty($_GET['error'])): ?>
+                    <p class="error">
+                        <?php if($_GET['error'] == 1): ?>
+                            学籍番号が空です。
+                        <?php elseif($_GET['error'] == 2): ?>
+                            このユーザーは削除できません。
+                        <?php else: ?>
+                            サーバーエラー
+                        <?php endif; ?>
+                    </p>
+                <?php elseif(isset($_GET['success'])): ?>
+                    <p class="success">削除に成功しました。</p>
+                <?php endif; ?>
+            <?php elseif (!empty($_GET['type']) && $_GET['type'] == "edit"): ?>
+
+            <?php endif; ?>
             <table class="table">
                 <thead>
                     <tr>
@@ -59,6 +76,8 @@ try {
                         <th>氏名</th>
                         <th>メールアドレス</th>
                         <th>出身高校</th>
+                        <th>修正</th>
+                        <th>削除</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,6 +87,16 @@ try {
                             <td><?= $student['full_name'] ?></td>
                             <td><?= $student['email'] ?></td>
                             <td><?= $student['from_highschool'] ?></td>
+                            <td>
+                                <button class="btn btn-secondary">修正</button>
+                            </td>
+                            <td>
+                                <form action="/api/delete-student/index.php" method="post" id="delete-student-form">
+                                    <input type="hidden" name="class-no" value="<?= $student["class_no"] ?>">
+                                    <input type="hidden" name="full-name" value="<?= $student["full_name"] ?>">
+                                    <button class="btn btn-danger" type="submit">削除</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
