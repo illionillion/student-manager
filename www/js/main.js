@@ -17,4 +17,12 @@ window.addEventListener('load', () => {
             e.preventDefault()
         }
     })
+    document.querySelectorAll('.editForm').forEach((form) => {
+        form?.addEventListener('submit', e => {
+            const isSubmit = confirm('本当に修正しますか？')
+            if (!isSubmit) {
+                e.preventDefault()
+            }
+        })
+    })
 })
