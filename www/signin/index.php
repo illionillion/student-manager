@@ -33,7 +33,7 @@
                 <input type="submit" class="btn btn-outline-primary" value="サインイン">
             </div>
             <?php if($error != 0) :?>
-                <div class="error_message">
+                <div class="text-danger">
                     <p>
                         <?php if($error == 1) :?>
                             学籍番号が入力されていません
